@@ -9,7 +9,18 @@
   <script src="app.js"></script>
 </head>
 <body>
-  <h1>Avengers Character Search</h1>
-  <button id="search">Search</button>
+  <header>
+    <img src = "avengers.jpg" alt = "Avengers Logo" id = "logo">
+    <h1> Avengers Search</h1>
+  </header>
+  <main>
+    <label for="query">Search by Full Name or Alias</label>
+    <div class = "row"> 
+    <input type="text" id="query" placeholder="e.g. Tony Stark or Ironman">
+    <button id="search">Search</button>
+    </div>
+    <h2>Results</h2>
+    <div id="result"></div>
+  </main>
 </body>
 </html>

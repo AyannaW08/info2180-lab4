@@ -63,10 +63,21 @@ $superheroes = [
   ], 
 ];
 
-?>
+$q = htmlspecialchars(trim($_GET["query"] ?? ""), ENT_QUOTES);
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+if ($q === "") {
+    echo "<ul>";
+    foreach ($superheroes as $h) echo "<li>{$h['alias']}</li>";
+    echo "</ul>";
+} else {
+    $f = null;
+    foreach ($superheroes as $h) {
+        if (strcasecmp(htmlspecialchars($h["alias"], ENT_QUOTES), $q) == 0 || strcasecmp(htmlspecialchars($h["name"], ENT_QUOTES), $q) == 0) $f = $h;
+    }
+     if ($f) {
+        $img = rawurlencode("superhero images") . "/" . rawurlencode($f["alias"]) . ".jpg";
+        echo "<h3>{$f['alias']}</h3><h4>{$f['name']}</h4><img src='$img' alt='{$f['alias']}' class='hero'><p>{$f['biography']}</p>";
+    } else {
+        echo "<p class='err'>Superhero not found</p>";
+    }
+}

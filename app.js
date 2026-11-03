@@ -1,7 +1,8 @@
 $(document).ready(function () {
   $("#search").on("click", function () {
-    $.ajax("superheroes.php").done(function (r) {
-      alert(r);
+    const q = $("#query").val();
+    $.ajax("superheroes.php", { data: {query: q} }).done(function (r) {
+      $("#result").html(r);
     });
   });
 });
